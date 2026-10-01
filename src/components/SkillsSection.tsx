@@ -168,7 +168,7 @@ export const SkillsSection: React.FC = () => {
                 {block.items.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/35 bg-[#EFEBE4] text-[#3B312A] group-hover:border-[#85630F]/50 group-hover:bg-[#1F1914] group-hover:text-[#1F1A16] transition-all duration-300"
+                    className="px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/35 bg-[#EFEBE4] text-[#3B312A] group-hover:border-[#85630F]/50 group-hover:bg-[#85630F]/10 group-hover:text-[#1F1A16] transition-all duration-300"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     {tech}
