@@ -103,6 +103,17 @@ const groups: WorkGroup[] = [
 
 export const ProjectsSection: React.FC = () => {
   const [lightbox, setLightbox] = useState<WorkImage | null>(null);
+  // The stacking-card effect needs each card to fit on screen, so on phones and tablets the cards are shown as a normal list.
+  const [isCompact, setIsCompact] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 1023px)');
+    const onChange = (e: MediaQueryListEvent) => setIsCompact(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   useEffect(() => {
     if (!lightbox) return;
@@ -113,85 +124,21 @@ export const ProjectsSection: React.FC = () => {
     return () => window.removeEventListener('keydown', onKey);
   }, [lightbox]);
 
-  return (
-    <section
-      id="work"
-      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-20 pb-32 px-6 sm:px-12 lg:px-20"
-    >
-      {/* Studio Ambient Glows */}
-      <div className="absolute top-1/4 left-1/3 w-[36rem] h-[36rem] bg-[#D4AF37]/5 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-[#8C6D4F]/5 rounded-full blur-[170px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto w-full relative z-10">
-        {/* Eyebrow Header */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex items-center space-x-4 mb-5"
-        >
-          <span
-            className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            02 / SELECTED WORK
-          </span>
-          <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
-        </motion.div>
-
-        {/* Section Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16"
-        >
-          <h2
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
-            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-          >
-            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-              SELECTED WORKS.
-            </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.35)]">
-              DESIGNED TO BE BUILT.
-            </span>
-          </h2>
-
-          <p
-            className="text-xs sm:text-sm font-light text-[#A8988B] max-w-sm mt-4 md:mt-0 leading-relaxed"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            Scroll to unfold four areas of work from six years of event, exhibition and interior projects. Tap any image to view it full size.
-          </p>
-        </motion.div>
-
-        <ScrollStack
-          itemDistance={20}
-          itemScale={0.035}
-          itemStackDistance={28}
-          stackPosition="15%"
-          scaleEndPosition="6%"
-          baseScale={0.88}
-          useWindowScroll={true}
-        >
-          {groups.map((group) => (
+  const stackItems = groups.map((group) => (
             <ScrollStackItem key={group.title}>
-              <div className="relative w-full rounded-2xl border border-[#8C6D4F]/50 bg-[#0E0C0A] p-6 sm:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.98)] group overflow-hidden transition-colors duration-500 hover:border-[#D4AF37]">
+              <div className="relative w-full rounded-2xl border border-[#8C6D4F]/50 bg-[#FFFFFF] p-6 sm:p-10 shadow-[0_18px_50px_rgba(60,45,30,0.12)] group overflow-hidden transition-colors duration-500 hover:border-[#85630F]">
                 {/* Top Gold Border Light Flare */}
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#85630F]/80 to-transparent" />
 
                 {/* Corner Minimal L-Brackets */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors" />
+                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#85630F]/60 group-hover:border-[#85630F] transition-colors" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#85630F]/60 group-hover:border-[#85630F] transition-colors" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#85630F]/60 group-hover:border-[#85630F] transition-colors" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#85630F]/60 group-hover:border-[#85630F] transition-colors" />
 
                 {/* Big Background Watermark Number */}
                 <span
-                  className="absolute -bottom-6 -right-3 text-8xl sm:text-9xl font-bold text-[#EAD8C7]/5 select-none pointer-events-none leading-none"
+                  className="absolute -bottom-6 -right-3 text-8xl sm:text-9xl font-bold text-[#2E261F]/5 select-none pointer-events-none leading-none"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
                   {group.number}
@@ -202,21 +149,21 @@ export const ProjectsSection: React.FC = () => {
                   <div className="lg:col-span-5 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center space-x-3 mb-4">
-                        <span className="text-xs font-mono font-bold text-[#D4AF37]">{group.number} //</span>
-                        <span className="text-[10.5px] font-mono tracking-[0.25em] uppercase text-[#A8988B]">
+                        <span className="text-xs font-mono font-bold text-[#85630F]">{group.number} //</span>
+                        <span className="text-[10.5px] font-mono tracking-[0.25em] uppercase text-[#54483E]">
                           {group.category}
                         </span>
                       </div>
 
                       <h3
-                        className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white mb-4 group-hover:text-[#F7E7C4] transition-colors uppercase leading-[0.9]"
+                        className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#1F1A16] mb-4 group-hover:text-[#946E14] transition-colors uppercase leading-[0.9]"
                         style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                       >
                         {group.title}
                       </h3>
 
                       <p
-                        className="text-xs sm:text-sm md:text-[14px] font-light text-[#BDB0A4] leading-[1.85] tracking-wide mb-6"
+                        className="text-xs sm:text-sm md:text-[14px] font-light text-[#54483E] leading-[1.85] tracking-wide mb-6"
                         style={{ fontFamily: "'Montserrat', sans-serif" }}
                       >
                         {group.description}
@@ -226,10 +173,10 @@ export const ProjectsSection: React.FC = () => {
                         {group.highlights.map((m) => (
                           <div
                             key={m.label}
-                            className="p-3 rounded-sm border border-[#8C6D4F]/25 bg-[#050403] flex items-center justify-between gap-4"
+                            className="p-3 rounded-sm border border-[#8C6D4F]/25 bg-[#EFEBE4] flex items-center justify-between gap-4"
                           >
-                            <span className="text-[10px] font-mono text-[#A8988B]">{m.label}</span>
-                            <span className="text-[11px] font-mono font-medium text-[#F7E7C4] text-right">
+                            <span className="text-[10px] font-mono text-[#54483E]">{m.label}</span>
+                            <span className="text-[11px] font-mono font-medium text-[#946E14] text-right">
                               {m.value}
                             </span>
                           </div>
@@ -241,7 +188,7 @@ export const ProjectsSection: React.FC = () => {
                       {group.tools.map((t) => (
                         <span
                           key={t}
-                          className="px-3 py-1 text-[10px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/40 bg-[#16120E] text-[#E8D7C5] group-hover:border-[#D4AF37]/50 transition-all duration-300"
+                          className="px-3 py-1 text-[10px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/40 bg-[#EFEBE4] text-[#3B312A] group-hover:border-[#85630F]/50 transition-all duration-300"
                           style={{ fontFamily: "'Montserrat', sans-serif" }}
                         >
                           {t}
@@ -257,7 +204,7 @@ export const ProjectsSection: React.FC = () => {
                         key={img.src}
                         type="button"
                         onClick={() => setLightbox(img)}
-                        className={`relative overflow-hidden rounded-sm border border-[#8C6D4F]/30 hover:border-[#D4AF37] bg-black cursor-zoom-in transition-colors duration-300 group/img ${
+                        className={`relative overflow-hidden rounded-sm border border-[#8C6D4F]/30 hover:border-[#85630F] bg-[#F5F4F1] cursor-zoom-in transition-colors duration-300 group/img ${
                           i === 0 ? 'col-span-6 aspect-[16/8]' : 'col-span-3 aspect-[16/10]'
                         }`}
                         aria-label={`View ${img.caption}`}
@@ -269,7 +216,7 @@ export const ProjectsSection: React.FC = () => {
                           className={`w-full h-full transition-transform duration-700 group-hover/img:scale-105 ${img.contain ? 'object-contain bg-white' : 'object-cover'}`}
                         />
                         <span
-                          className="absolute inset-x-0 bottom-0 px-3 py-2 bg-gradient-to-t from-black/90 to-transparent text-left text-[10px] tracking-[0.18em] uppercase text-[#E8D7C5] opacity-0 group-hover/img:opacity-100 transition-opacity"
+                          className="absolute inset-x-0 bottom-0 px-3 py-2 bg-gradient-to-t from-black/90 to-transparent text-left text-[10px] tracking-[0.18em] uppercase text-[#F0E6DA] opacity-0 group-hover/img:opacity-100 transition-opacity"
                           style={{ fontFamily: "'Montserrat', sans-serif" }}
                         >
                           {img.caption}
@@ -280,8 +227,78 @@ export const ProjectsSection: React.FC = () => {
                 </div>
               </div>
             </ScrollStackItem>
-          ))}
-        </ScrollStack>
+          ));
+
+  return (
+    <section
+      id="work"
+      className="relative w-full bg-[#F5F4F1] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-20 pb-32 px-6 sm:px-12 lg:px-20"
+    >
+      {/* Studio Ambient Glows */}
+      <div className="absolute top-1/4 left-1/3 w-[36rem] h-[36rem] bg-[#85630F]/5 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-[#8C6D4F]/5 rounded-full blur-[170px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        {/* Eyebrow Header */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="flex items-center space-x-4 mb-5"
+        >
+          <span
+            className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#85630F]"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            02 / SELECTED WORK
+          </span>
+          <div className="w-20 h-[1px] bg-gradient-to-r from-[#85630F]/80 via-[#8C6D4F]/40 to-transparent" />
+        </motion.div>
+
+        {/* Section Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16"
+        >
+          <h2
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
+            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+          >
+            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#1F1A16] via-[#3B312A] to-[#5E5247]">
+              SELECTED WORKS.
+            </span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#946E14] via-[#85630F] to-[#5A4208]">
+              DESIGNED TO BE BUILT.
+            </span>
+          </h2>
+
+          <p
+            className="text-xs sm:text-sm font-light text-[#54483E] max-w-sm mt-4 md:mt-0 leading-relaxed"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            Scroll to unfold four areas of work from six years of event, exhibition and interior projects. Tap any image to view it full size.
+          </p>
+        </motion.div>
+
+        {isCompact ? (
+          <div className="space-y-6">{stackItems}</div>
+        ) : (
+          <ScrollStack
+          itemDistance={20}
+          itemScale={0.035}
+          itemStackDistance={28}
+          stackPosition="15%"
+          scaleEndPosition="6%"
+          baseScale={0.88}
+          useWindowScroll={true}
+        >
+          {stackItems}
+          </ScrollStack>
+        )}
       </div>
 
       {/* Lightbox */}
@@ -293,12 +310,12 @@ export const ProjectsSection: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={() => setLightbox(null)}
-            className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 sm:p-10 cursor-zoom-out"
+            className="fixed inset-0 z-[100] bg-[#F5F4F1]/95 flex flex-col items-center justify-center p-4 sm:p-10 cursor-zoom-out"
           >
             <button
               type="button"
               onClick={() => setLightbox(null)}
-              className="absolute top-5 right-6 text-[#EAD8C7] text-2xl hover:text-[#D4AF37] transition-colors"
+              className="absolute top-5 right-6 text-[#2E261F] text-2xl hover:text-[#85630F] transition-colors"
               aria-label="Close"
             >
               ✕
@@ -310,7 +327,7 @@ export const ProjectsSection: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             />
             <p
-              className="mt-4 text-[11px] tracking-[0.25em] uppercase text-[#C4B29E]"
+              className="mt-4 text-[11px] tracking-[0.25em] uppercase text-[#54483E]"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               {lightbox.caption}
