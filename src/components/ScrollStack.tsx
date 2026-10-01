@@ -45,6 +45,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   onStackComplete,
 }) => {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const innerRef = useRef<HTMLDivElement | null>(null);
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
@@ -80,6 +81,20 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       };
     }
   }, [useWindowScroll]);
+
+  // Cards stay pinned until the end marker is half a screen up, so the tallest card hangs below the marker.
+  // Reserve exactly that much room under the stack so it never slides over the next section.
+  const updateRunway = useCallback(() => {
+    const inner = innerRef.current;
+    if (!inner || !cardsRef.current.length) return;
+    const { containerHeight } = getScrollData();
+    const stackPositionPx = parsePercentage(stackPosition, containerHeight);
+    const lowestEdge = Math.max(
+      ...cardsRef.current.map((c, idx) => stackPositionPx + itemStackDistance * idx + c.offsetHeight)
+    );
+    const needed = lowestEdge - containerHeight / 2 + 48;
+    inner.style.paddingBottom = `${Math.max(needed, containerHeight * 0.08)}px`;
+  }, [getScrollData, parsePercentage, stackPosition, itemStackDistance]);
 
   const updateCardTransforms = useCallback(() => {
     if (!cardsRef.current.length || isUpdatingRef.current) return;
@@ -241,10 +256,15 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       card.style.perspective = '1000px';
     });
 
+    updateRunway();
+    window.addEventListener('resize', updateRunway);
+    window.addEventListener('load', updateRunway);
     setupLenis();
     updateCardTransforms();
 
     return () => {
+      window.removeEventListener('resize', updateRunway);
+      window.removeEventListener('load', updateRunway);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -270,11 +290,12 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     onStackComplete,
     setupLenis,
     updateCardTransforms,
+    updateRunway,
   ]);
 
   return (
     <div className={`scroll-stack-scroller ${className}`.trim()} ref={scrollerRef}>
-      <div className="scroll-stack-inner">
+      <div className="scroll-stack-inner" ref={innerRef}>
         {children}
         <div className="scroll-stack-end" />
       </div>

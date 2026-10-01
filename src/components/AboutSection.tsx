@@ -69,7 +69,7 @@ export const AboutSection: React.FC = () => {
   return (
     <section 
       id="about" 
-      className="relative w-full min-h-screen bg-[#F5F4F1] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black py-24 lg:py-32 px-6 sm:px-12 lg:px-20 overflow-hidden flex items-center"
+      className="relative w-full min-h-screen bg-[#F3EDE2] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black py-24 lg:py-32 px-6 sm:px-12 lg:px-20 overflow-hidden flex items-center"
     >
       {/* ================= BACKGROUND GLOWS & FLOATING PARTICLES ================= */}
       <motion.div 
@@ -259,7 +259,7 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Portrait Image Canvas */}
-              <div className="relative overflow-hidden w-full max-w-[390px] aspect-[4/5] bg-[#F5F4F1] rounded-sm">
+              <div className="relative overflow-hidden w-full max-w-[390px] aspect-[4/5] bg-[#F3EDE2] rounded-sm">
                 {/* Main Portrait */}
                 <img
                   src={aboutImg}

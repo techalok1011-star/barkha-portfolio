@@ -13,6 +13,13 @@ const highlights = [
   },
   {
     quote:
+      'A main stage hall with LED walls, truss and large-scale seating, planned so every row has a clear view of the stage.',
+    name: 'Community Day Main Stage',
+    designation: 'Brand Experience Events',
+    src: '/work/ather-stage.jpg',
+  },
+  {
+    quote:
       'Stage, seating and hall layout planned together so large audiences can see, move and be seated comfortably, coordinated with vendors and the project team.',
     name: 'Conference Hall & Stage',
     designation: 'Corporate Events',
@@ -45,7 +52,7 @@ export const HighlightsSection: React.FC = () => {
   return (
     <section
       id="highlights"
-      className="relative w-full bg-[#F5F4F1] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-4 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden"
+      className="relative w-full bg-[#F3EDE2] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-4 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden"
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-[#85630F]/[0.04] rounded-full blur-[150px] pointer-events-none" />
 
@@ -106,7 +113,7 @@ export const HighlightsSection: React.FC = () => {
                 designation: '#85630F',
                 testimony: '#54483E',
                 arrowBackground: '#1F1A16',
-                arrowForeground: '#F5F4F1',
+                arrowForeground: '#F3EDE2',
                 arrowHoverBackground: '#85630F',
               }}
               fontSizes={{

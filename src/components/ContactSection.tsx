@@ -26,7 +26,7 @@ export const ContactSection: React.FC = () => {
   return (
     <footer
       id="contact"
-      className="relative w-full bg-[#F5F4F1] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-16 pb-16 px-6 sm:px-12 lg:px-20 overflow-hidden"
+      className="relative w-full bg-[#F3EDE2] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-16 pb-16 px-6 sm:px-12 lg:px-20 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
@@ -191,7 +191,7 @@ export const ContactSection: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 border border-[#8C6D4F]/50 bg-[#FFFFFF] hover:border-[#85630F] hover:bg-[#EFEBE4] text-[#1F1A16] hover:text-[#946E14] text-xs font-medium tracking-[0.25em] uppercase transition-all duration-300 shadow-[0_18px_50px_rgba(60,45,30,0.12)]"
+                  className="w-full py-3.5 border border-[#8C6D4F]/50 bg-[#FFFFFF] hover:border-[#85630F] hover:bg-[#ECE5D8] text-[#1F1A16] hover:text-[#946E14] text-xs font-medium tracking-[0.25em] uppercase transition-all duration-300 shadow-[0_18px_50px_rgba(60,45,30,0.12)]"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   SEND MESSAGE ↗

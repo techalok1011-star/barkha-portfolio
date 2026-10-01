@@ -99,6 +99,46 @@ const groups: WorkGroup[] = [
       { src: '/work/interior-facade.jpg', caption: 'Entrance facade' },
     ],
   },
+  {
+    number: '05',
+    title: 'Brand Experience Events',
+    category: 'COMMUNITY DAY / IMMERSIVE SET DESIGN',
+    description:
+      'A large-format brand experience planned from site layout to 3D visualisation: a main-stage hall with seating, a themed street set built around the product, and interactive demo zones for visitors.',
+    tools: ['Stage Design', 'Set Design', 'Site Layout', '3D Visualisation'],
+    highlights: [
+      { label: 'SPACES', value: 'Stage, Street Set, Demo Zones' },
+      { label: 'VISUALS', value: '3D Renders + Site Layout' },
+      { label: 'FOCUS', value: 'Visitor Experience' },
+    ],
+    images: [
+      { src: '/work/ather-stage.jpg', caption: 'Main stage and seating hall' },
+      { src: '/work/ather-site-layout.jpg', caption: 'Site layout, aerial view' },
+      { src: '/work/ather-street.jpg', caption: 'Themed street set' },
+      { src: '/work/ather-blindspot.jpg', caption: 'Blind spot detection zone' },
+      { src: '/work/ather-zone.jpg', caption: 'Interactive experience zones' },
+    ],
+  },
+  {
+    number: '06',
+    title: 'AI Summit Venue Planning',
+    category: 'LARGE-VENUE LAYOUTS / NEW DELHI',
+    description:
+      'Hall-wise layout drawings for the AI Summit at Bharat Mandapam, New Delhi, covering exhibition halls, plenary seating, press briefing, lounges and circulation, planned to scale across floors.',
+    tools: ['AutoCAD', 'Space Planning', 'Seating Layouts', 'Circulation'],
+    highlights: [
+      { label: 'VENUE', value: 'Bharat Mandapam, New Delhi' },
+      { label: 'PLANS', value: 'Halls 1, 2-5, 14 + Plenary' },
+      { label: 'INCLUDES', value: 'Seating, Booths, Circulation' },
+    ],
+    images: [
+      { src: '/work/summit-halls-2-5.jpg', caption: 'Exhibition halls 2 to 5, ground floor', contain: true },
+      { src: '/work/summit-plenary.jpg', caption: 'Plenary hall seating plan', contain: true },
+      { src: '/work/summit-hall-1-gf.jpg', caption: 'Hall 1, ground floor', contain: true },
+      { src: '/work/summit-hall-1-ff.jpg', caption: 'Hall 1, first floor', contain: true },
+      { src: '/work/summit-hall-14-gf.jpg', caption: 'Hall 14, ground floor', contain: true },
+    ],
+  },
 ];
 
 export const ProjectsSection: React.FC = () => {
@@ -173,7 +213,7 @@ export const ProjectsSection: React.FC = () => {
                         {group.highlights.map((m) => (
                           <div
                             key={m.label}
-                            className="p-3 rounded-sm border border-[#8C6D4F]/25 bg-[#EFEBE4] flex items-center justify-between gap-4"
+                            className="p-3 rounded-sm border border-[#8C6D4F]/25 bg-[#ECE5D8] flex items-center justify-between gap-4"
                           >
                             <span className="text-[10px] font-mono text-[#54483E]">{m.label}</span>
                             <span className="text-[11px] font-mono font-medium text-[#946E14] text-right">
@@ -188,7 +228,7 @@ export const ProjectsSection: React.FC = () => {
                       {group.tools.map((t) => (
                         <span
                           key={t}
-                          className="px-3 py-1 text-[10px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/40 bg-[#EFEBE4] text-[#3B312A] group-hover:border-[#85630F]/50 transition-all duration-300"
+                          className="px-3 py-1 text-[10px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/40 bg-[#ECE5D8] text-[#3B312A] group-hover:border-[#85630F]/50 transition-all duration-300"
                           style={{ fontFamily: "'Montserrat', sans-serif" }}
                         >
                           {t}
@@ -204,8 +244,8 @@ export const ProjectsSection: React.FC = () => {
                         key={img.src}
                         type="button"
                         onClick={() => setLightbox(img)}
-                        className={`relative overflow-hidden rounded-sm border border-[#8C6D4F]/30 hover:border-[#85630F] bg-[#F5F4F1] cursor-zoom-in transition-colors duration-300 group/img ${
-                          i === 0 ? 'col-span-6 aspect-[16/8]' : 'col-span-3 aspect-[16/10]'
+                        className={`relative overflow-hidden rounded-sm border border-[#8C6D4F]/30 hover:border-[#85630F] bg-[#F3EDE2] cursor-zoom-in transition-colors duration-300 group/img ${
+                          i === 0 || (i === group.images.length - 1 && i % 2 === 1) ? 'col-span-6 aspect-[16/8]' : 'col-span-3 aspect-[16/10]'
                         }`}
                         aria-label={`View ${img.caption}`}
                       >
@@ -232,7 +272,7 @@ export const ProjectsSection: React.FC = () => {
   return (
     <section
       id="work"
-      className="relative w-full bg-[#F5F4F1] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-20 pb-32 px-6 sm:px-12 lg:px-20"
+      className="relative w-full bg-[#F3EDE2] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-20 pb-32 px-6 sm:px-12 lg:px-20"
     >
       {/* Studio Ambient Glows */}
       <div className="absolute top-1/4 left-1/3 w-[36rem] h-[36rem] bg-[#85630F]/5 rounded-full blur-[180px] pointer-events-none" />
@@ -280,7 +320,7 @@ export const ProjectsSection: React.FC = () => {
             className="text-xs sm:text-sm font-light text-[#54483E] max-w-sm mt-4 md:mt-0 leading-relaxed"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Scroll to unfold four areas of work from six years of event, exhibition and interior projects. Tap any image to view it full size.
+            Scroll to unfold six areas of work from six years of event, exhibition and interior projects. Tap any image to view it full size.
           </p>
         </motion.div>
 
@@ -310,7 +350,7 @@ export const ProjectsSection: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={() => setLightbox(null)}
-            className="fixed inset-0 z-[100] bg-[#F5F4F1]/95 flex flex-col items-center justify-center p-4 sm:p-10 cursor-zoom-out"
+            className="fixed inset-0 z-[100] bg-[#F3EDE2]/95 flex flex-col items-center justify-center p-4 sm:p-10 cursor-zoom-out"
           >
             <button
               type="button"

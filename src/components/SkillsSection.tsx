@@ -67,7 +67,7 @@ export const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative w-full bg-[#F5F4F1] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-8 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center"
+      className="relative w-full bg-[#F3EDE2] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black pt-8 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center"
     >
       {/* Ambient Glows */}
       <div className="absolute top-1/3 left-1/4 w-[34rem] h-[34rem] bg-[#85630F]/5 rounded-full blur-[170px] pointer-events-none" />
@@ -142,7 +142,7 @@ export const SkillsSection: React.FC = () => {
                 <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#85630F] group-hover:text-[#946E14] transition-colors">
                   {block.badge}
                 </span>
-                <span className="text-[10px] font-mono px-2.5 py-0.5 border border-[#8C6D4F]/40 text-[#54483E] bg-[#EFEBE4] group-hover:border-[#85630F]/50 group-hover:text-[#1F1A16] transition-all">
+                <span className="text-[10px] font-mono px-2.5 py-0.5 border border-[#8C6D4F]/40 text-[#54483E] bg-[#ECE5D8] group-hover:border-[#85630F]/50 group-hover:text-[#1F1A16] transition-all">
                   {block.stat}
                 </span>
               </div>
@@ -168,7 +168,7 @@ export const SkillsSection: React.FC = () => {
                 {block.items.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/35 bg-[#EFEBE4] text-[#3B312A] group-hover:border-[#85630F]/50 group-hover:bg-[#85630F]/10 group-hover:text-[#1F1A16] transition-all duration-300"
+                    className="px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/35 bg-[#ECE5D8] text-[#3B312A] group-hover:border-[#85630F]/50 group-hover:bg-[#85630F]/10 group-hover:text-[#1F1A16] transition-all duration-300"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     {tech}

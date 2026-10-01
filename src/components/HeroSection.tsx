@@ -29,6 +29,7 @@ const fadeUpVariants: Variants = {
 
 const heroSlides = [
   '/work/stand-aero.jpg',
+  '/work/ather-stage.jpg',
   '/work/event-arch.jpg',
   '/work/interior-dome.jpg',
   '/work/decor-wedding.jpg',
@@ -63,7 +64,7 @@ export const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-[100svh] min-h-[560px] overflow-hidden bg-[#F5F4F1] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black cursor-none">
+    <section className="relative w-full h-[100svh] min-h-[560px] overflow-hidden bg-[#F3EDE2] text-[#1F1A16] font-sans selection:bg-[#cbb59d] selection:text-black cursor-none">
       {/* ================= 1. MINIMAL CUSTOM CURSOR ================= */}
       {cursorPos.x >= 0 && (
         <motion.div
@@ -80,7 +81,7 @@ export const HeroSection: React.FC = () => {
       )}
 
       {/* ================= 2. RENDER SLIDESHOW LAYER ================= */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#F5F4F1]">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#F3EDE2]">
         {/* Slideshow of work renders */}
         <AnimatePresence>
           <motion.img
@@ -96,9 +97,9 @@ export const HeroSection: React.FC = () => {
         </AnimatePresence>
 
         {/* Soft blends into the black page */}
-        <div className="absolute inset-y-0 left-0 w-full md:w-[75%] bg-gradient-to-r from-[#F5F4F1] via-[#F5F4F1]/85 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F5F4F1] to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#F5F4F1]/85 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-full md:w-[75%] bg-gradient-to-r from-[#F3EDE2] via-[#F3EDE2]/85 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F3EDE2] to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F3EDE2] via-[#F3EDE2]/80 to-transparent" />
 
         {/* ================= 3. MONOGRAM EMBLEM ================= */}
         <div className="absolute bottom-6 right-6 lg:bottom-10 lg:right-12 flex items-center justify-center z-10">
@@ -185,7 +186,7 @@ export const HeroSection: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 z-[60] bg-[#F5F4F1] flex flex-col items-center justify-center gap-8 pointer-events-auto md:hidden"
+              className="fixed inset-0 z-[60] bg-[#F3EDE2] flex flex-col items-center justify-center gap-8 pointer-events-auto md:hidden"
             >
               <button
                 type="button"
@@ -308,10 +309,10 @@ export const HeroSection: React.FC = () => {
             transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="hidden lg:flex flex-col items-start pointer-events-auto pr-6 xl:pr-12 mr-2 z-20 select-none"
           >
-            <span className="text-xl text-[#85630F] leading-none font-serif mb-2">“</span>
+            <span className="text-xl text-[#85630F] leading-none font-serif mb-2 [text-shadow:0_0_10px_rgba(255,255,255,0.95)]">“</span>
 
             <div
-              className="text-[9.5px] font-medium tracking-[0.24em] uppercase text-[#54483E] space-y-1 mb-3"
+              className="text-[10.5px] font-semibold tracking-[0.24em] uppercase text-[#1F1A16] space-y-1 mb-3 [text-shadow:0_0_10px_rgba(255,255,255,0.95),0_0_3px_rgba(255,255,255,0.9)]"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               <p>SPACE IS MY CRAFT.</p>
@@ -321,7 +322,7 @@ export const HeroSection: React.FC = () => {
             <div className="w-28 h-[1px] bg-gradient-to-r from-[#85630F] via-[#3B312A]/70 to-transparent shadow-[0_0_8px_rgba(133,99,15,0.4)] mb-2" />
 
             <div
-              className="text-[2.2rem] text-[#85630F] font-normal leading-none -ml-0.5"
+              className="text-[2.2rem] text-[#6B4E0A] font-normal leading-none -ml-0.5 [text-shadow:0_0_10px_rgba(255,255,255,0.95),0_0_3px_rgba(255,255,255,0.9)]"
               style={{
                 fontFamily: "'Herr Von Muellerhoff', 'Allura', cursive",
                 letterSpacing: '0.04em',
